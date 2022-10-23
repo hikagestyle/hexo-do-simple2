@@ -1,0 +1,47 @@
+
+<h1><%= config.title %></h1>
+
+<% if (page.posts.length > 0) { %>
+<h2>Recent Posts</h2>
+
+<% page.posts.sort('date', -1).limit(5).each(post => { %>
+<div class="recent-post-item">
+<time datetime="<%=post.date.toJSON()%>">
+<%=date(post.date)%>
+</time>
+<a href="<%=url_for(post.path)%>"><%=post.title%></a>
+</div><!-- /.recent-posts-item -->
+<% }); %>
+
+<% } %>
+
+
+<h2>公式サイト</h2>
+
+<p>静的サイトジェネレーターとCSSフレームワーク</p>
+
+<ul>
+<li><a href="https://hexo.io/" target="_blank" rel="nofollow noopener noreferrer">Hexo</a></li>
+
+<li><a href="https://hexo.io/docs/" target="_blank" rel="nofollow noopener noreferrer">Documentation</a></li>
+
+<li><a href="https://hexo.io/docs/permalinks" target="_blank" rel="nofollow noopener noreferrer">Permalinks</a></li>
+
+<li><a href="https://hexo.io/docs/templates" target="_blank" rel="nofollow noopener noreferrer">Templates</a></li>
+
+<li><a href="https://hexo.io/docs/variables" target="_blank" rel="nofollow noopener noreferrer">Variables</a></li>
+
+<li><a href="https://hexo.io/docs/helpers" target="_blank" rel="nofollow noopener noreferrer">Helpers</a></li>
+
+<li><a href="https://hexo.io/plugins/" target="_blank" rel="nofollow noopener noreferrer">Plugins</a></li>
+
+<li><a href="https://purecss.io/" target="_blank" rel="nofollow noopener noreferrer">Pure</a></li>
+</ul>
+
+
+<h2>テーマのリポジトリ</h2>
+
+<p>シンプルなHexoの自作テーマ。GitHubに置いておきます。</p>
+
+<p><a href="https://github.com/hikagestyle/hexo-do-simple2" target="_blank" rel="nofollow noopener noreferrer">hexo-do-simple2</a></p>
+

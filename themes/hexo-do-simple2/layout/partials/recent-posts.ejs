@@ -1,0 +1,21 @@
+
+<% if (page.posts.length > 0) { %>
+<div id="recent-posts">
+
+<% if (is_home()) { %>
+<h2>Recent Posts</h2>
+<% } else { %>
+<h1>Recent Posts</h1>
+<% } %>
+
+<% page.posts.sort('date', -1).limit(10).each(post => { %>
+<div class="recent-post-item">
+<time datetime="<%=post.date.toJSON()%>">
+<%=date(post.date)%>
+</time>
+<a href="<%=url_for(post.path)%>"><%=post.title%></a>
+</div><!-- /.recent-posts-item -->
+<% }); %>
+
+</div><!-- #recent-posts -->
+<% } %>

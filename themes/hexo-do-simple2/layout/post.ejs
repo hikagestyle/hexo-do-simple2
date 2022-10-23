@@ -1,0 +1,37 @@
+
+<article id="post">
+<h1><%=page.title%></h1>
+
+<% if (page.updated.format) { %>
+<div class="date updated"><time datetime="<%=page.updated.format("YYYY-MM-DD")%>"><%=page.updated.format("YYYY-MM-DD")%></time></div>
+<% } else { %>
+<div class="date published"><time datetime="<%=page.date.format("YYYY-MM-DD")%>"><%=page.date.format("YYYY-MM-DD")%></time></div>
+<% } %>
+
+<%-page.content%>
+</article><!-- #post -->
+
+<% if (page.categories && page.categories.length) { %>
+<div class="post-categories">
+<%- list_categories(page.categories, {class: 'category', show_count: false, style: false}) %>
+</div><!-- /.post-categories -->
+<% } %>
+
+<% if (page.tags && page.tags.length){ %>
+<div class="post-tags">
+<%- list_tags(page.tags, {class: 'tag', show_count: false, style: false}) %>
+</div><!-- /.post-tags -->
+<% } %>
+
+<% if (page.prev || page.next) { %>
+<!-- post-paginator -->
+<div class="post-nav">
+<% if (page.prev){ %>
+<div class="page-prev-post">Next: <a class="prev-post" href="<%- url_for(page.prev.path) %>"><%- page.prev.title || '[Untitled Post]' %></a></div>
+<% } %>
+<% if (page.next){ %>
+<div class="page-next-post">Prev: <a class="next-post" href="<%- url_for(page.next.path) %>"><%- page.next.title || '[Untitled Post]' %></a></div>
+<% } %>
+</div><!-- /.post-nav -->
+<% } %>
+

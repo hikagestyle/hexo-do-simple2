@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="<%=config.language%>">
+
+<%
+var pageTitle = page.title || config.subtitle || '';
+if (is_tag()) pageTitle = 'Tag: ' + page.tag + ': ' + page.current;
+if (is_category()) pageTitle = 'Category: ' + page.category + ': ' + page.current;
+pageTitle += ' [ ' + config.title + ' ]';
+%>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<% if (config.noindex === 'noindex' || page.noindex === 'noindex') { %><meta name="robots" content="noindex,nofollow"><% } %>
+
+<% if (is_home()) { %>
+<title><%= config.title %></title>
+<% if (config.description) { %><meta name="description" content="<%= config.description %>"><% } %>
+<% if (config.keywords) { %><meta name="keywords" content="<%= config.keywords %>"><% } %>
+<% } else if(is_month()){ %>
+<title><%=page.year%>年<%=page.month%>月: <%=page.current%>ページ [ <%= config.title %> ]</title>
+<% } else if(is_year()){ %>
+<title><%=page.year%>年: <%=page.current%>ページ [ <%= config.title %> ]</title>
+<% } else if(is_archive()){ %>
+<title>Archives: <%=page.current%>ページ [ <%= config.title %> ]</title>
+<% } else { %>
+<title><%= pageTitle %></title>
+<% if (page.description) { %><meta name="description" content="<%= page.description %>"><% } %>
+<% if (page.keywords) { %><meta name="keywords" content="<%= page.keywords %>"><% } %>
+<% } %>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@2.1.0/build/pure-min.css">
+<link rel="stylesheet" href="https://unpkg.com/purecss@2.1.0/build/grids-responsive-min.css">
+
+<%- css('/css/style.css') %>
+
+<link rel="icon" href="<%= config.root %>img/favicon.ico" type="image/png">
+<link rel="icon" href="<%= config.root %>img/apple-touch-icon.png" type="image/png">
+<link rel="icon" href="<%= config.root %>img/android-chrome-192x192.png" type="image/png">
+
+<!-- <%- feed_tag('atom.xml') %> -->
+<%-partial('partials/_analytics')%>
+
+</head>
+
+<% if (is_home()) { %>
+<body class="home">
+<% } else if(is_post()){ %>
+<body class="post">
+<% } else if(is_archive()){ %>
+<body class="archive-page">
+<% } else { %>
+<body class="page">
+<% } %>
+
+<div id="layout" class="pure-g">
+
+  <main id="main" class="pure-u-1 pure-u-md-1 pure-u-lg-5-8">
+
+
+<header>
+<div class="site-title"><a href="<%= config.root %>"><%= config.title %></a></div>
+<p class="site-description"><%= config.description %></p>
+</header>
+
+
+<div class="site-img"><img src="<%= config.root %>img/site-img.jpg" alt="<%= config.title %>"></div>
+
+
+<nav class="menu">
+<% Object.keys(theme.menu).forEach(key => { %>
+<a class="pure-button" href="<%= config.root %><%= theme.menu[key] %>"><%= key %></a>
+<% }); %>
+</nav>
+
+
+<div class="content">
+<%- body %>
+</div><!-- /.content -->
+
+
+  </main><!-- /main -->
+
+
+	<aside id="side" class="pure-u-1 pure-u-md-1 pure-u-lg-3-8">
+
+<div class="section">
+<h2>サイドバー</h2>
+
+<ul>
+<% Object.keys(theme.sidemenu).forEach(key => { %>
+<li><a href="<%= config.root %><%= theme.sidemenu[key] %>"><%= key %></a></li>
+<% }); %>
+</ul>
+</div>
+
+
+<%- partial('partials/sidebar')%>
+
+
+<footer>
+<small id="copyright">&copy; <%=config.title%> All Rights Reserved.</small>
+</footer>
+
+	</aside><!-- /aside -->
+
+
+</div><!-- /.pure-g -->
+
+
+<!-- script -->
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/venobox/2.0.4/venobox.min.js"></script>
+
+<script>new VenoBox();</script>
+
+<script>
+	var delaycss = document.createElement('link');
+	delaycss.rel = 'stylesheet';
+	delaycss.href = 'https://cdnjs.cloudflare.com/ajax/libs/venobox/2.0.4/venobox.min.css';
+	document.head.appendChild(delaycss);
+</script>
+
+<%- js('/js/script.js') %>
+
+</body>
+</html>

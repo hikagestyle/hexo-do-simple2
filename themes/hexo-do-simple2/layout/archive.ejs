@@ -1,0 +1,36 @@
+
+<% if (is_month()) { %>
+<h1>Year and Month Archives</h1>
+<p><%=page.year%>年<%=page.month%>月: <%=page.current%>ページ</p>
+<% } else if(is_year()){ %>
+<h1>Year Archives</h1>
+<p><%=page.year%>年: <%=page.current%>ページ</p>
+<% } else if(is_archive()){ %>
+<h1>Archives</h1>
+<p>アーカイブ: <%=page.current%>ページ</p>
+<% } else { %>
+<h1>アーカイブ</h1>
+<% } %>
+
+<% if (page.posts.length > 0) { %>
+<div id="archive">
+
+<p>archive.ejs</p>
+
+<% page.posts.sort('date', -1).limit(10).each(post => { %>
+<div class="archive-item">
+<time datetime="<%=post.date.toJSON()%>">
+<%=date(post.date)%>
+</time>
+<a href="<%=url_for(post.path)%>"><%=post.title%></a>
+</div><!-- /.archive-item -->
+<% }); %>
+
+</div><!-- #archive -->
+<% } %>
+
+
+<div id="paginator">
+<%-paginator()%>
+</div><!-- #paginator -->
+

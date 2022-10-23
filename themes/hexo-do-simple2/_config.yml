@@ -1,0 +1,18 @@
+
+# html lang
+language: ja
+
+# main menu navigation
+menu:
+  Home: 
+  Menu: menu/
+
+# side menu navigation
+sidemenu:
+  Home: 
+  Menu: menu/
+  About: about/
+  Contact: contact/
+  Privacy-Policy: privacy-policy/
+  Archives: archives/
+
