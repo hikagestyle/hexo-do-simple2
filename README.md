@@ -31,3 +31,5 @@ MIT
 
 ## デモサイト
 
+[hexo-do-simple2](https://hexo-do-simple2.netlify.app)
+
