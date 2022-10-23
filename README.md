@@ -10,6 +10,7 @@ Hexo（静的サイトジェネレーター）のテーマ。
 
 
 ## 環境
+
 - x230(Lenovo ThinkPad)
 - LinuxMint 20.3
 - Hexo: 5.4.2
